@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-entry container">
+
+
+  <h1>{{ post.title }}</h1>
+  <div class="post_auth d-flex justify-content-center">
+    <p>by <strong>{{post.author}}</strong> &middot; {{post.created_date}}</p>
+  </div>
+  <br>
+
+  {{post.body|safe}}
+
+
+{% if user == post.author %}
+  <div class="edit_delete d-flex justify-content-end">
+    <p><a href="{% url 'post_edit' post.pk %}"><button type="button" class="btn btn-primary mx-2" name="button">Edit Blog</button></a></p>
+    <p><a href="{% url 'post_delete' post.pk %}"><button type="button" class="btn btn-danger" name="button">Delete blog</button></a></p>
+  </div>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+  <form class="" action="{% url 'like_post' post.pk %}" method="post">
+    {% csrf_token %}
+    {% if liked %}
+    <button type="submit" class="btn btn-danger" name="post_id"  value="{{post.id}}">Unlike-{{total_likes}}</button>
+    {% else %}
+    <button type="submit" class="btn btn-success"  name="post_id" value="{{post.id}}">Like-{{total_likes}}</button>
+    {% endif %}
+  </form>
+
+
+  {% endif %}
+
+ <br>
+   {% if user.is_authenticated %}
+  <form class="" action="{% url 'post_detail' post.pk %}" method="post">
+    <div class="container">
+
+      <form action="" method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Add comment">
+      </form>
+    </div>
+  </form>
+  {% else %}
+      Login to add comment:
+      <a href="{% url 'login' %}"><button type="button" class='btn btn-primary' name="button">Login</button></a>
+  {% endif %}
+  <br>
+  <div class="card-footer">
+ {% for comment in post.comments.all %}
+
+ <span class="font-weight-bold"><strong>{{ comment.author }}</strong> &middot; {{comment.created_date}} :</span>
+ <p id="commmrnt-trxt">
+ {{ comment }}
+ </p>
+ {% endfor %}
+ </div>
+  {% endblock content %}
+</div>
