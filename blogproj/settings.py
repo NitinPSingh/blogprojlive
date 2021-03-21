@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,8 +131,8 @@ USE_TZ = True
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
 AWS_LOCATION = 'static'
 
-
-
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_URL='/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
@@ -142,4 +143,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 LOGIN_URL = '/user_login/'
 
-#S3 BUCKETS CONFIG
+)
