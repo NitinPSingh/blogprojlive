@@ -1,195 +1,18 @@
-body,html {
-    margin:0;
-    padding:0;
-    font-weight: lighter;
+@media (min-width: 1200px) {
+    .container{
+        width: 1100px!important;
+    }
 }
-h1,h2,h3,h4,h5{
-  font-weight: normal;
-}
-.loginbox{
-
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-/* background-color: rgb(101, 52, 217); */
-
-
-height: 100vh;
-}
-.logintitle h1{
-
-  color: rgb(242, 109, 204);
-  /* font-family: 'Lobster', cursive; */
-  font-family: 'Fredoka One', cursive;
-  font-size: 4rem;
-  font-weight: bold;
-  margin-top: -130px;
-
-}
-.logintitle p{
- padding-top: 2%;
- font-size: 3rem;
-}
-.loginbox button{
-  font-size: 2rem;
-  outline: none;
-  width: 130%;
-  border: 0px;
-  border-radius: 50px;
-
-}
-.loginform button{
-  outline: none;
-  width: 30%;
-  border: 0px;
-  border-radius: 50px;
-
-  margin-bottom: 20px;
-  background-color: rgb(242, 109, 204);
-  color: white;
-}
-
-.loginform{
-    border: 1px solid black;
-
-  margin-top: 20px;
-  font-size: 2rem;
-
-  text-align: center;
-  color: black;
-
-}
-@media screen and (min-width: 600px) {
-  .loginform {
-      border: 1px solid black;
-    margin:0px;
-
-
-
-    font-size: 2.5rem;
-
-    text-align: center;
-    color: black;
-
-  }
-  .regisform{
-    margin:0px;
-
-
-
-    font-size: 2.5rem;
-
-
-    color: black;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .loginform {
-      border: 1px solid black;
-    margin:0px;
-
-
-    font-size: 3rem;
-
-    text-align: center;
-    color: black;
-
-  }
-  .regisform{
-    margin:0px;
-
-
-
-    height: 1000vh;
-
-    font-size: 3rem;
-    color: black;
-  }
-}
-@media screen and (min-width: 1300px) {
-  .loginform{
-      border: 1px solid black;
-      margin-left: 325px;
-      margin-right: 325px;
-
-    padding-top: 50px;
-    font-size: 2rem;
-
-    text-align: center;
-    color: black;
-
-  }
-
-}
-.loginform input{
-  width: 80%;
-  margin: 20px 0px;
-  padding: 1rem;
-  border: none;
-  border-bottom: 4px solid rgb(242, 109, 204);
-  background: transparent;
-}
-/* .loginform:hover{
-  box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
--webkit-box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
--moz-box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
-} */
-.loginform:hover{
-  box-shadow: -1px 8px 30px 1px rgba(209,33,204,0.98);
-  -webkit-box-shadow: -1px 8px 30px 1px rgba(209,33,204,0.98);
-  -moz-box-shadow: -1px 8px 30px 1px rgba(209,33,204,0.98);
-}
-
-.regisform{
-  font-size: 2rem;
-  background: transparent;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.regisform h1{
-  color: rgb(242, 109, 204);
-  /* font-family: 'Lobster', cursive; */
-  font-family: 'Fredoka One', cursive;
-  font-size: 4rem;
-  font-weight: bold;
-  margin-bottom: 50px;
-
-}
-.regisform input{
-  border: 0px;
-  border-bottom: 2px solid rgb(242, 109, 204);;
-
-}
-#profileimage{
-  border-radius: 100%;
-  border: 1px solid rgba(235, 234, 232,0.5);
-  width: 60px;
-  height: 60px;
-}
-.navtext{
-  font-size: 2rem;
-
-}
-.navbar-brand{
-  font-size: 3rem;
-}
-
-.post_out_box{
-
-
-
-
-
+body{
+  padding: 0;
+  margin: 0;
 }
 .post_in_box{
   position: relative;
   border-radius: 15px;
   height:380px;
+  padding: 0;
+
   margin-top: 10px;
   font-size: 10px;
   box-shadow: -1px 2px 18px -4px rgba(255,183,239,1);
@@ -201,30 +24,6 @@ height: 100vh;
   border-top-left-radius: 15px;
   width: 100%;
   height: 65%;
-}
-
-.navbar {
-  background-color: white;
-
-
-  background-image: none;
-
-  margin-bottom: 10px;
-}
-.profile-name{
-  color: rgb(242, 109, 204)!important;
-  font-family: 'Fredoka One', cursive;
-}
-.title {
-  color: rgb(242, 109, 204)!important;
-  font-family: 'Fredoka One', cursive;
-  font-size: 2rem;
-}
-#regis_button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(242, 109, 204);
 }
 .post_like{
 
@@ -248,6 +47,7 @@ a{
   font-family: 'Inconsolata', monospace;
   color:#100c08;
   font-size: 2.5rem;
+  max-width: 100%;
 }
 a:link{
   text-decoration: none;
@@ -256,15 +56,139 @@ a:link{
   font-size: 1rem;
 }
 #add_post{
-  position: absolute;
+  position: fixed;
+  left:45%;
   height: 80px;
   bottom: 30px;
   border: 0px solid rgb(242, 109, 204);
-  border-radius: 15%
+  border-radius: 15%;
+
 
 }
-.dropdown-menu{
-  width:220px !important;
+.navbar-brand{
+  font-family: 'Inconsolata', monospace;
+  color:rgb(242, 109, 204);
+
+   font-weight: bold;
+    font-size: 2rem;
+}
+post-entry{
+  max-width: 100%
+}
+h1,h2,h3,h4,h5{
+  font-weight: normal;
+}
+.loginbox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+/* background-color: rgb(101, 52, 217); */
 
 
+height: 100vh;
+}
+.logintitle h1{
+
+  color: rgb(242, 109, 204);
+  /* font-family: 'Lobster', cursive; */
+  font-family: 'Fredoka One', cursive;
+
+  font-weight: bold;
+
+
+}
+.logintitle p{
+ padding-top: 2%;
+ font-size: 2rem;
+}
+.loginbox button{
+  font-size: 1rem;
+  outline: none;
+  width: 130%;
+  border: 0px;
+  border-radius: 50px;
+  height: 2.5rem;
+
+}
+.loginform button{
+  outline: none;
+  width: 80%;
+  border: 0px;
+  border-radius: 50px;
+
+  margin-bottom: 20px;
+  background-color: rgb(242, 109, 204);
+  color: white;
+}
+
+.loginform{
+    border: 1px solid black;
+
+  margin-top: 20px;
+  font-size: 2rem;
+
+  text-align: center;
+  color: black;
+
+}
+
+.loginform input{
+  width: 80%;
+  margin: 20px 0px;
+  padding: 1rem;
+  border: none;
+  border-bottom: 4px solid rgb(242, 109, 204);
+  background: transparent;
+}
+/* .loginform:hover{
+  box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
+-webkit-box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
+-moz-box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
+} */
+.loginform:hover{
+  box-shadow: -1px 8px 30px 1px rgba(209,33,204,0.98);
+  -webkit-box-shadow: -1px 8px 30px 1px rgba(209,33,204,0.98);
+  -moz-box-shadow: -1px 8px 30px 1px rgba(209,33,204,0.98);
+}
+
+.regisform{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  /* font-size: 2rem;
+  background: transparent;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+.regisform h1{
+  color: rgb(242, 109, 204);
+  /* font-family: 'Lobster', cursive; */
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+
+}
+.regisform input{
+  border: 0px;
+  border-bottom: 2px solid rgb(242, 109, 204);;
+
+}
+.regis_button{
+
+}
+#profileimage{
+  border-radius: 100%;
+  border: 1px solid rgba(235, 234, 232,0.5);
+  width: 60px;
+  height: 60px;
+}
+.navcont{
+  background-color: white;
 }
