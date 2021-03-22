@@ -4,6 +4,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -19,7 +20,76 @@
 
 
 <body>
-  <div class="container-fluid px-5">
+  <div class="container fixed-top navcont">
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+
+        <div class="col-6 text-start ">
+
+          <a class="blog-header-logo navbar-brand title" href="{% url 'home' %}#">#SOCIALBLOG</a>
+
+        </div>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+          <!-- <a class="link-secondary" href="#" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
+          </a> -->
+
+          {% if user.is_authenticated %}
+          <ul class="navbar-nav navtext  ml-auto">
+
+
+            <li class="nav-item dropdown flex-grow-1">
+
+              <a class=" nav-link dropdown-toggle profile-name" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if user.userprofileinfo.profile_pic %}
+
+                <img id="profileimage" src="{{user.userprofileinfo.profile_pic.url}}" alt="">
+                {% else %}
+                {% endif %}
+                {{ user.username|slice:8}}
+
+              </a>
+              <div class="dropdown-menu position-absolute dropdown-css dropdown-menu-right" aria-labelledby="navbarDropdown" style="max-width: 560px;">
+                <a class="dropdown-item" href="{% url 'post_new' %}">NEW POST</a>
+
+
+                <div class="dropdown-divider "></div>
+                <a class="dropdown-item " href="#"><a href="{% url 'logout' %}"><button type="button" class="btn btn-danger btn-logout mx-4 px-4">Log out</button></a></a>
+              </div>
+            </li>
+
+          </ul>
+          {% else %}
+
+
+          <ul class="d-flex flex-row-reverse bd-highlight">
+
+
+
+
+            <li class="nav-item d-flex">
+              <a href="{% url 'register' %}"><button type="button" class="btn btn-outline-dark buttons" name="button">register</button></a>
+            </li>
+            <li class="nav-item d-flex">
+              <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-success buttons mx-2" name="button">signin</button></a>
+            </li>
+
+          </ul>
+          {% endif %}
+        </div>
+
+      </div>
+    </header>
+
+
+
+  </div>
+<br>
+<br>
+<br>
+<br>
+
+  <!-- <div class="container-fluid px-5">
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-css">
       <div class="container">
@@ -52,7 +122,7 @@
 
         </ul>
         {% else %}
-      
+
 
         <ul class="d-flex flex-row-reverse bd-highlight">
 
@@ -80,7 +150,7 @@
   <br>
   <br>
   <br>
-
+ -->
 
 
 
