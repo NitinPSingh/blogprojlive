@@ -1,5 +1,5 @@
 # blogprojlive
 
 
-#for live demonstration
-#https://nitinsingh46.herokuapp.com/
+for live demonstration  :
+https://nitinsingh46.herokuapp.com/
