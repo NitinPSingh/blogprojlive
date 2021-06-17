@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+
+<br>
+
+
+
+      <div class="container is-desktop">
+          
+
+              <!-- Stories -->
+              <div class="inner-wrapper">
+                  <h1 style="font-size: 20pt;font-weight: bold;" >{{ post.title }}</h1>
+                  <div class="columns">
+                      <div class="column is-8">
+                          <!-- Story -->
+                          <div class="story-post-wrapper is-full">
+                              <div class="story-post mt-4">
+                                  <div class="post-image-wrap">
+                                    <img id= "post_pic" src="{{post.head_image.url}}" alt="">
+                                  </div>
+                                  <div class="post-meta">
+                                      <div class="post-author">
+                                          <div class="story-avatar">
+                                              {% if user.userprofileinfo.profile_pic %}
+
+              <img  src="{{user.userprofileinfo.profile_pic.url}}" alt="">
+              
+              {% else %}
+              <img  src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="">
+              {% endif %}
+                                          </div>
+                                          <div class="meta">
+                                              <span>{{post.author}}</span>
+                                              <span>{{post.created_date}}</span>
+                                          </div>
+                                      </div>
+
+                                      <div class="post-stats">
+                                          <div class="stat-item">
+                                              
+                                              {% if user.is_authenticated %}
+<form class="" action="{% url 'like_post' post.pk %}" method="post">
+{% csrf_token %}
+{% if liked %}
+<button type="submit" class="btn btn-danger" name="post_id"  value="{{post.id}}">Unlike-{{total_likes}}</button>
+{% else %}
+<button type="submit" class="btn btn-success"  name="post_id" value="{{post.id}}">Like-{{total_likes}}</button>
+{% endif %}
+</form>
+{% endif %}
+                                          </div>
+                                          
+                                      </div>
+                                  </div>
+                                  <div class="post-text content">
+                                      {{post.body|safe}}
+                                      
+                                  </div>
+                                  {% if user == post.author %}
+<div class="edit_delete d-flex justify-content-end">
+<p><a href="{% url 'post_edit' post.pk %}"><button type="button" class="btn btn-primary mx-2" name="button">Edit Blog</button></a></p>
+<p><a href="{% url 'post_delete' post.pk %}"><button type="button" class="btn btn-danger" name="button">Delete blog</button></a></p>
+</div>
+{% endif %}
+
+                                  <div class="post-compose">
+                                      <div class="control">
+                                          
+                                              
+                                              <form   action="{% url 'post_detail' post.pk %}" method="post">
+                                                
+                                            
+                                                  
+                                                    {% csrf_token %}
+                                                    <input class="textarea" type="text" name="comment" placeholder="Post a comment...">
+                                                    
+                                            
+                                                    <!-- <input class="button is-solid accent-button raised" type="submit" value="Add comment">  -->
+                                                  
+                                              {% if user.is_authenticated %}
+                                              <div class="compose-controls"></div>
+                                              
+                                          
+                                              <input class="btn btn-primary" type="submit" value="Add comment"> 
+                                            </div>
+                                              <!-- <input class="button is-solid accent-button raised" type="submit" value="Add comment"> -->
+                                              {% else %}
+                                              <input  type="submit" value="Add comment" class="btn btn-primary" disabled>
+                                              {% endif %}
+                                            </form>
+                                            <!-- <input class="textarea" type="text">
+                                          <textarea class="textarea" placeholder="Post a comment..."></textarea> -->
+                                      </div>
+                                      
+                                  </div>
+
+                                  <div class="comments-wrap">
+                                      <div class="comments-count">
+                                          <h4>Comments </h4>
+                                      </div>
+                                <br>
+
+                                      
+
+
+ {% for comment in post.comments.all %}
+                                      <div class="media is-comment">
+                                          <figure class="media-left">
+                                              <div class="avatar-wrap is-smaller">
+                                                
+                                                <div class="story-avatar">
+                                                    
+                                              
+                                              
+                                
+                                                      
+                                                      
+                                                  
+                                                </div>
+                                              </div>
+                                          </figure>
+                                          <div class="media-content">
+                                              <div class="comment-meta">
+                                                  <h4 style="font-weight: bold;"><a>{{ comment.author }}</a> <small> · {{comment.created_date}}</small></h4>
+                                                  <p>{{ comment }}</p>
+                                              </div>
+                                              
+                                          </div>
+                                      </div>
+
+                                      {% endfor %}
+                                  </div>
+                              </div>
+                          </div>
+
+                        
+                      <div class="column is-4">
+                        
+                          <!--Story post sidebar-->
+                          <div class="story-post-sidebar is-full">
+                              <div class="header">
+                                  <h2>You might like</h2>
+                                  
+                              </div>
+                              {% for post in others %}
+                              <div class="related-posts other-posts">
+                                  
+
+                                  <a class="related-post" href="{% url 'post_detail' post.pk %}">
+                                      <img class="post-list-image" src="{{post.head_image.url}}"  alt="">
+                                      <div class="meta">{% if post.title|length > 20 %}
+                                       
+                                        <h3>{{ post.title|slice:30 }}..</h3>
+                                        {% else %}
+                                        
+                                        <h3>{{ post.title }}</h3>
+                                      {% endif %}
+                                          
+                                          <div class="user-line">
+                                              
+                                              <span>{{ post.author }}</span>
+                                          </div>
+                                      </div>
+                                  </a>
+                                  
+                              </div>
+                              {% endfor %}
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              
+<!-- <div class="post-entry container">
+
+
+  <h1>{{ post.title }}</h1>
+  <div class="post_auth d-flex justify-content-center">
+    <p>by <strong>{{post.author}}</strong> &middot; {{post.created_date}}</p>
+  </div>
+  <br>
+
+  {{post.body|safe}}
+
+
+{% if user == post.author %}
+  <div class="edit_delete d-flex justify-content-end">
+    <p><a href="{% url 'post_edit' post.pk %}"><button type="button" class="btn btn-primary mx-2" name="button">Edit Blog</button></a></p>
+    <p><a href="{% url 'post_delete' post.pk %}"><button type="button" class="btn btn-danger" name="button">Delete blog</button></a></p>
+  </div>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+  <form class="" action="{% url 'like_post' post.pk %}" method="post">
+    {% csrf_token %}
+    {% if liked %}
+    <button type="submit" class="btn btn-danger" name="post_id"  value="{{post.id}}">Unlike-{{total_likes}}</button>
+    {% else %}
+    <button type="submit" class="btn btn-success"  name="post_id" value="{{post.id}}">Like-{{total_likes}}</button>
+    {% endif %}
+  </form>
+
+
+  {% endif %}
+
+ <br>
+   {% if user.is_authenticated %}
+  <form class="" action="{% url 'post_detail' post.pk %}" method="post">
+    <div class="container">
+
+      <!-- <form action="" method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Add comment"> -->
+      
+  <!-- </form>
+  {% else %}
+      Login to add comment:
+      <a href="{% url 'login' %}"><button type="button" class='btn btn-primary' name="button">Login</button></a>
+  
+      {% endif %}
+  <br> -->
+  <!-- <div class="card-footer">
+ {% for comment in post.comments.all %}
+
+ <span class="font-weight-bold"><strong>{{ comment.author }}</strong> &middot; {{comment.created_date}} :</span>
+ <p id="commmrnt-trxt">
+ {{ comment }}
+ </p>
+ {% endfor %}
+ </div> -->
+  {% endblock content %}
+</div>

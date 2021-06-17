@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container loginbox">
+<div class="logintitle">
+  
+</div>
+
+<div class="loginform" >
+  {% for message in messages %}
+  <h1 style="color:red;" ><span class="red_msg">{{ message }}</span></h1>
+   {% endfor %}
+  <form class="login" method="post">
+
+
+    {% csrf_token %}
+    {{ form.as_p}}
+
+    <button style="background-color: rgb(0, 0, 0);" type="submit">Log In</button> </form>
+    <p>don't have account?</p>
+    <a href="{% url 'register' %}"><button style="background-color: rgb(0, 0, 0);" type="button" name="button">Sign Up</button></a>
+
+
+</div>
+
+
+{% endblock content %}
