@@ -44,20 +44,32 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'storages',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ORIGIN_WHITELIST = (
+'http://localhost:3000',
+'http://localhost:8000',
+)
 
 ROOT_URLCONF = 'blogproj.urls'
+REST_FRAMEWORK = {
+'DEFAULT_PERMISSION_CLASSES': [
+'rest_framework.permissions.AllowAny',
+]
+}
 
 TEMPLATES = [
     {
@@ -81,15 +93,23 @@ WSGI_APPLICATION = 'blogproj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER':'postgres',
+        'PASSWORD':'nitinAWS',
+        'HOST':'database-3.ci0ohjipodzi.ap-south-1.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
-import dj_database_url
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -126,7 +146,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
-AWS_LOCATION = 'static'
+
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL='/static/'
@@ -136,6 +156,20 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = MEDIA_DIR
-LOGIN_URL = '/user_login/'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = MEDIA_DIR
+# LOGIN_URL = '/user_login/'
+# AWS_ACCESS_KEY_ID = 'AKIAWMKCGWTZ4R4NHIR2'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'nitinsinghbucket'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)

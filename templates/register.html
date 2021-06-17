@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+<br>
+<br>
+<br>
 
   <div class="container">
-    <div class="regisform">
+    <div class="regisform" style="text-align: center;font-size: larger;border: 1px solid black;">
 
       {% if registered %}
         <h1>Thank you for registering!</h1>
@@ -11,10 +14,10 @@
         <h1>Register Here</h1>
 
 
-        <form enctype="multipart/form-data" method="POST" ">
+        <form enctype="multipart/form-data" method="POST" >
           {% csrf_token %}
-          {{ user_form.as_p }}
-          {{ profile_form.as_p }}
+          {{ user_form|crispy }}
+          {{ profile_form|crispy }}
 
 
           <input id="regis_button" type="submit" name="" value="Register" >

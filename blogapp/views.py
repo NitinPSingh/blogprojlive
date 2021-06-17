@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.views.generic import ListView,DeleteView,DetailView,CreateView,UpdateView,TemplateView,FormView
 from .models import Post,Comment
+from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy,reverse
-from .forms import PostForm,EditForm,CommentForm
+from .forms import PostForm,EditForm,CommentForm,AuthenticationForm
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -11,6 +13,9 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin # new
 )
+from rest_framework import generics
+from django.contrib import messages 
+from .serializers import PostSerializer
 from .forms import UserForm,UserProfileInfoForm
 from django.views.generic.edit import FormMixin
 @login_required(login_url='login')
@@ -53,21 +58,31 @@ class BlogDetailView(FormMixin,DetailView): # new
         total_likes=stuff.like_count()
         context["total_likes"]=total_likes
         context["liked"]=liked
+        context["others"]=Post.objects.all()
         return context
     def form_valid(self, form): # new
         form.instance.author = self.request.user
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
     def post(self,request,**kwargs):
-        form=CommentForm(request.POST)
-        if form.is_valid():
-            com = form.cleaned_data['text']
+
+        if request.method == 'POST':
+            print("herer we go   zde")
+            form=CommentForm(request.POST)
+            print(form.is_valid)
+            
+            print("herer we go")
+            text = request.POST.get('comment')
+            print(text)
             author = self.request.user
             post_id = self.kwargs['pk']
-            print(com)
-            save=Comment(text=com,author=author,post_id=post_id)
+        #     com = form.cleaned_data['text']
+        #     author = self.request.user
+        #     post_id = self.kwargs['pk']
+        #     print(com)
+            save=Comment(text=text,author=author,post_id=post_id)
             save.save()
-        ordering = ['-pub_date']
+        # ordering = ['-pub_date']
         return HttpResponseRedirect(reverse("post_detail", kwargs={'pk':self.kwargs['pk']}))
     def get_success_url(self, **kwargs):
     # obj = form.instance or self.object
@@ -171,3 +186,47 @@ def register(request):
                           {'user_form':user_form,
                            'profile_form':profile_form,
                            })
+
+class ListPost(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+class DetailPost(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+def search(request):
+    query = request.GET['query']
+    
+    allpost = Post.objects.all()
+    
+    searchpost = Post.objects.filter(title__icontains=query)
+    print(searchpost)
+    params = {'searchpost':searchpost}
+    return render(request,'search.html',params)
+
+
+def user_login(request):
+    if request.method == 'POST':
+        print("hsdifdfaDSNN jdsf vcxz.........")
+        form = AuthenticationForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username,password=password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                
+                
+                
+                
+                return redirect(reverse('home'))
+        else:
+            messages.error(request,'username or password not correct')
+            print(messages)
+            return redirect(reverse('login'))
+        
+                
+    else:
+        form = AuthenticationForm()
+        context = {'form': form}
+    return render(request,'registration/login.html',context)

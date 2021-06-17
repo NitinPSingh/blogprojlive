@@ -1,0 +1,293 @@
+@media (min-width: 1200px) {
+    .container{
+        width: 1100px!important;
+    }
+}
+body{
+  padding: 0;
+  margin: 0;
+}
+h1,h2,h3,h4{
+  font-weight: normal;
+}
+.post_in_box{
+  position: relative;
+  border-radius: 15px;
+  height:380px;
+  padding: 0;
+
+  margin-top: 10px;
+  font-size: 10px;
+  box-shadow: -2px 7px 16px -3px rgba(0,0,0,0.4);
+-webkit-box-shadow: -2px 7px 16px -3px rgba(0,0,0,0.4);
+-moz-box-shadow: -2px 7px 16px -3px rgba(0,0,0,0.4);
+}
+
+#post_pic{
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  width: 100%;
+  height: 65%;
+}
+
+.post_like{
+
+
+  position: absolute;
+  right:30px;
+  top:330px;
+  margin-bottom: 0px;
+  font-size: 1.3rem;
+  font-stretch: expanded;
+}
+#post_like_i{
+  padding: 2px;
+
+}
+a{
+  color:#000000;
+}
+.post_name {
+
+  font-family: 'Inconsolata', monospace;
+  color:#100c08;
+  font-size: 2.5rem;
+  max-width: 100%;
+}
+a:link{
+  text-decoration: none;
+  color:#000000;
+}
+.post_date{
+  font-size: 1rem;
+}
+#add_post{
+  position: fixed;
+  left:45%;
+  height: 80px;
+  bottom: 30px;
+  border: 0px solid rgb(242, 109, 204);
+  border-radius: 15%;
+
+
+}
+.wrapper{ 
+  // width: 1000px;
+  width:600px; 
+  overflow-y:scroll; 
+  position:relative;
+  height: 300px;
+}
+.navbar-brand{
+  font-family: 'Inconsolata', monospace;
+  color:rgb(242, 109, 204);
+
+   font-weight: bold;
+    font-size: 2rem;
+}
+post-entry{
+  max-width: 100%
+}
+h1,h2,h3,h4,h5{
+  font-weight: normal;
+}
+.loginbox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+/* background-color: rgb(101, 52, 217); */
+
+
+height: 100vh;
+}
+.logintitle h1{
+
+  color: rgb(0, 0, 0);
+  /* font-family: 'Lobster', cursive; */
+  font-family: 'Fredoka One', cursive;
+
+  font-weight: bold;
+
+
+}
+.logintitle p{
+ padding-top: 2%;
+ font-size: 2rem;
+}
+.loginbox button{
+  font-size: 1rem;
+  outline: none;
+  width: 130%;
+  border: 0px;
+  border-radius: 50px;
+  height: 2.5rem;
+
+}
+.loginform button{
+  outline: none;
+  width: 80%;
+  border: 0px;
+  border-radius: 50px;
+
+  margin-bottom: 20px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.loginform{
+    border: 1px solid black;
+
+  margin-top: 20px;
+  font-size: 2rem;
+
+  text-align: center;
+  color: black;
+
+}
+
+.loginform input{
+  width: 80%;
+  margin: 20px 0px;
+  padding: 1rem;
+  border: none;
+  border-bottom: 4px solid rgb(0, 0, 0);
+  background: transparent;
+}
+/* .loginform:hover{
+  box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
+-webkit-box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
+-moz-box-shadow: -1px 8px 29px -5px rgba(209,33,204,0.76);
+} */
+.loginform:hover{
+  box-shadow: -1px 8px 30px 1px rgba(0, 0, 0, 0.98);
+  -webkit-box-shadow: -1px 8px 30px 1px rgba(0, 0, 0, 0.98);
+  -moz-box-shadow: -1px 8px 30px 1px rgba(0, 0, 0, 0.98);
+}
+
+.regisform{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  /* font-size: 2rem;
+  background: transparent;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+.regisform h1{
+  color: rgb(0, 0, 0);
+  /* font-family: 'Lobster', cursive; */
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+
+}
+.regisform input{
+  border: 0px;
+  border-bottom: 2px solid rgb(242, 109, 204);;
+  
+
+}
+
+.regis_button{
+
+}
+#profileimage{
+  border-radius: 100%;
+  border: 1px solid rgba(235, 234, 232,0.5);
+  width: 60px;
+  height: 60px;
+}
+.navcont{
+  background-color: white;
+}
+.account-box
+{
+    border: 2px solid rgba(153, 153, 153, 0.75);
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -o-border-radius: 2px;
+    z-index: 3;
+    font-size: 13px !important;
+    font-family: "Helvetica Neue" ,Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.logo
+{
+    width: 138px;
+    height: 30px;
+    text-align: center;
+    
+    background-position: 0px -4px;
+    position: relative;
+}
+
+.forgotLnk
+{
+    margin-top: 10px;
+    display: block;
+}
+
+.purple-bg
+{
+    background-color: #6E329D;
+    color: #fff;
+}
+.or-box
+{
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+    margin-top:20px;
+}
+.or
+{
+    color: #666666;
+    background-color: #ffffff;
+    position: absolute;
+    text-align: center;
+    top: -8px;
+    width: 40px;
+    left: 90px;
+}
+.account-box .btn:hover
+{
+    color: #fff;
+}
+.btn-facebook
+{
+    background-color: #3F639E;
+    color: #fff;
+    font-weight:bold;
+}
+.btn-google
+{
+    background-color: #454545;
+    color: #fff;
+    font-weight:bold;
+}
+
+
+.comment-image{
+
+  height: 50px;
+  weidth: 50px;
+
+}
+.other-posts{
+  height: 70px !important;;
+  
+}
+.control-group{
+  padding: 20%!important;
+}
