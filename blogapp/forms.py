@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Post,Comment
-
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import UserProfileInfo
 
@@ -43,7 +43,17 @@ class EditForm(forms.ModelForm):
         'body':forms.Textarea(attrs={'class':'form-control'})
         }
 class CommentForm(forms.ModelForm):
-    text = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Add comment'}),label='')
+    text = forms.Textarea()
+    
     class Meta():
         model = Comment
         fields = ( 'text',)
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label="Username", required=True, max_length=30,
+                           widget=forms.TextInput(attrs={
+                               'class': 'form-control',
+                               'name': 'username'}))
+    password = forms.CharField(label="Password", required=True, max_length=30,
+                           widget=forms.PasswordInput(attrs={
+                               'class': 'form-control',
+                               'name': 'password'}))
