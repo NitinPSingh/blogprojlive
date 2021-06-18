@@ -107,11 +107,17 @@
 
  {% for comment in post.comments.all %}
                                       <div class="media is-comment">
-                                         <figure class="media-left">
-                                                    <div class="avatar-wrap is-smaller">
-                                                        <img  src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="">
-                                                    </div>
-                                                </figure>
+                                        <div class="user-image">
+                    
+              
+              
+              <img  src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="">
+              
+              
+
+                      
+                      
+                  </div>
                                           <div class="media-content">
                                               <div class="comment-meta">
                                                   <h4 style="font-weight: bold;"><a>{{ comment.author }}</a> <small> · {{comment.created_date}}</small></h4>
