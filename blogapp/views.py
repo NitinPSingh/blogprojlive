@@ -59,6 +59,9 @@ class BlogDetailView(FormMixin,DetailView): # new
         context["total_likes"]=total_likes
         context["liked"]=liked
         context["others"]=Post.objects.all()
+        fn = self.kwargs['pk']
+        print(fn)
+        context["fn"]=fn
         return context
     def form_valid(self, form): # new
         form.instance.author = self.request.user
@@ -82,10 +85,12 @@ class BlogDetailView(FormMixin,DetailView): # new
         #     print(com)
             save=Comment(text=text,author=author,post_id=post_id)
             save.save()
+            
         # ordering = ['-pub_date']
         return HttpResponseRedirect(reverse("post_detail", kwargs={'pk':self.kwargs['pk']}))
     def get_success_url(self, **kwargs):
     # obj = form.instance or self.object
+        
         return reverse("post_detail", kwargs={'pk':self.kwargs['pk']})
 
 class BlogCreateView(LoginRequiredMixin,CreateView):
