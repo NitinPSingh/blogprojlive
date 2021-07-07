@@ -1,0 +1,104 @@
+<div class="navbar-v2">
+    <div class="top-nav">
+        <div class="left">
+            <div class="brand">
+                <a href="/" class="navbar-logo">
+                    <img class="logo light-image" src="https://nitinsinghbucket.s3.ap-south-1.amazonaws.com/static/iconi.png" width="112" height="28" alt="">
+                    <img class="logo dark-image" src="https://nitinsinghbucket.s3.ap-south-1.amazonaws.com/static/iconi.png" width="112" height="28" alt="">
+                </a>
+            </div>
+            
+        </div>
+        <div class="right">
+            
+
+            
+            <div class="navbar-item is-icon drop-trigger">
+                
+              <h4>{{ user.username }}</h4>
+                
+                  
+            </div>
+            
+            
+            
+            <div id="account-dropdown" class="navbar-item is-account drop-trigger has-caret">
+              {% if user.is_authenticated %}
+                <div class="user-image">
+                  {% if user.userprofileinfo.profile_pic %}
+
+            <img  src="{{user.userprofileinfo.profile_pic.url}}" alt="">
+            
+            {% else %}
+            <img  src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="">
+            {% endif %}
+            
+
+                    
+                    <span class="indicator"></span>
+                </div>
+                
+                <div class="nav-drop is-account-dropdown">
+                    <div class="inner">
+                        <div class="nav-drop-header">
+                           <h4><span class="username">{{ user.username }}</span></h4> 
+                            <label class="theme-toggle">
+                                <input type="checkbox">
+                                <span class="toggler">
+                                        <span class="dark">
+                                            <i data-feather="moon"></i>
+                                        </span>
+                                <span class="light">
+                                            <i data-feather="sun"></i>
+                                        </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="nav-drop-body account-items">
+                            
+                            <hr class="account-divider">
+                            
+                            
+                            
+                            <a class="account-item" href="{% url 'post_new' %}">
+                                <div class="media">
+                                    <div class="icon-wrap">
+                                      <i class="fas fa-blog"></i>
+                                    </div>
+                                    <div class="media-content">
+                                        <h3>New Blog</h3>
+                                        <small>Write a blog</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="account-item" href="{% url 'logout' %}">
+                                <div class="media">
+                                    <div class="icon-wrap" >
+                                        <i data-feather="power"></i>
+                                    </div>
+                                    <div class="media-content">
+                                      <h3>Log out</h3>
+                                      <small>Write a blog</small>
+                                  </div>
+                                      
+                                        
+                                        
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                  <div>
+                    
+                      <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-success buttons mx-2" name="button">signin</button></a>
+                    
+                  </div>
+                {% endif %}
+            </div>
+        </div>
+        <!--Search-->
+        
+    </div>
+    
+</div>
