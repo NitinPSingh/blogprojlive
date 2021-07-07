@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
+{% with fn|stringformat:"i"|add:".css"  as f %}
+<link rel="stylesheet" href="{% static "css/"|add:f %}"/>
+{% endwith %}
+
+
 <br>
 
 <br>
@@ -7,8 +13,7 @@
 
 
       <div class="container is-desktop">
-          
-
+        
               <!-- Stories -->
               <div class="inner-wrapper">
                   <h1 style="font-size: 20pt;font-weight: bold;" >{{ post.title }}</h1>
@@ -107,7 +112,7 @@
 
  {% for comment in post.comments.all %}
                                       <div class="media is-comment">
-                                             <figure class="media-left">
+                                          <figure class="media-left">
                                               <div class="avatar-wrap is-smaller">
                                                 
                                                 <div class="story-avatar" style="    width: 32px;height: 32px;min-width: 45px;">
@@ -172,7 +177,11 @@
                     </div>
                   </div>
                 </div>
-                
+                {% with fn|stringformat:"i"|add:".js"  as f %}
+
+<script src="{% static "js/"|add:f %}"> </script>
+{% endwith %}
+               
               
 <!-- <div class="post-entry container">
 
